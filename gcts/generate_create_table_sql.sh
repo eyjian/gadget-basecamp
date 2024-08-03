@@ -10,7 +10,7 @@ if [ "$#" -ne 3 ]; then
 fi
 
 table_name=$1 # 表名
-delimiter=$2  # 分隔符
+delimiter=$2  # 分隔符（不能为单引号、双引号和反引号）
 input_file=$3 # 输入文件（只支持单个表）
 
 # 生成建表语句
