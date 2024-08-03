@@ -72,16 +72,3 @@ CREATE TABLE `t_user` (
 * 字段注释
 
 **注意**一个输入文件只能定义一张表。
-
-# Go 版 gcts 工具安装方法
-
-```shell
-go install github.com/eyjian/gadget-basecamp/gcts@latest
-```
-
-执行成功后，在 $GOPATH/bin 目录下可找到 gcts：
-
-```shell
-# file `go env GOPATH`/bin/gcts
-/root/go/bin/gcts: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, not stripped
-```
