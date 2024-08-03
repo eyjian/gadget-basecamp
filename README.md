@@ -3,6 +3,6 @@
 
 # 工具说明
 
-## mcts
+## gcts
 
-生成建表 SQL 的工具（make create table sql）
+生成建表 SQL 的工具（generate create table sql）

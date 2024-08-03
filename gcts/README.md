@@ -1,6 +1,6 @@
-# mcts
+# gcts
 
-生成建表 SQL 的工具（make create table sql）
+生成建表 SQL 的工具（generate create table sql），本工具生成的建表 SQL 不包含创建索引和分区等。
 
 # 应用场景
 
@@ -25,14 +25,14 @@
 
 使用的时候，从 Word 等将字段名、字段类型、字段注释三列复制到文本文件，然后执行工具就可以生成建表 SQL 。
 
-# make_create_table_sql.sh 
+# generate_create_table_sql.sh 
 
 一个简单的 shell 脚本，可以生成建表 SQL 。
 
 ## 使用示例
 
 ```shell
-% sh make_create_table_sql.sh 't_user' ',' 'input_file.txt'
+% sh generate_create_table_sql.sh 't_user' ',' 'input_file.txt'
 CREATE TABLE `t_user` (
   `f_id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增 ID',
   `f_name` VARCHAR(20) NOT NULL COMMENT '姓名',
