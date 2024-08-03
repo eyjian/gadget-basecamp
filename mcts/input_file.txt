@@ -1,0 +1,14 @@
+f_id	,INT UNSIGNED NOT NULL AUTO_INCREMENT	,自增 ID
+f_name	,VARCHAR(20) NOT NULL	,姓名
+f_age	,INT UNSIGNED NOT NULL	,年龄
+f_sex	,VARCHAR(1) NOT NULL	,性别
+f_birthday	,DATE NOT NULL	,生日
+f_address	,VARCHAR(100) NOT NULL	,地址
+f_phone	,VARCHAR(11) DEFAULT ''	,电话
+f_email	,VARCHAR(100) DEFAULT ''	,邮箱
+f_qq	,VARCHAR(10) DEFAULT ''	,QQ
+f_wechat	,VARCHAR(100) DEFAULT ''	,微信
+f_weibo	,VARCHAR(100) DEFAULT ''	,微博
+f_create_time	,DATETIME DEFAULT CURRENT_TIMESTAMP	,创建时间
+f_update_time	,DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP	,更新时间
+f_delete_time	,DATETIME	,删除时间
