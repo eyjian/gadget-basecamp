@@ -1,0 +1,35 @@
+// Package gogcts
+// Wrote by yijian on 2024/08/03
+package gogcts
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
+func GenerateCreateTableSQL(tableName, delimiter string, inputFile *os.File) (string, error) {
+	var result strings.Builder
+
+	result.WriteString("DROP TABLE IF EXISTS `" + tableName + "`;\n")
+	result.WriteString("CREATE TABLE `" + tableName + "` (\n")
+
+	scanner := bufio.NewScanner(inputFile)
+	for scanner.Scan() {
+		line := scanner.Text()
+		columns := strings.Split(line, delimiter)
+		if len(columns) == 3 {
+			fName := strings.TrimSpace(columns[0])
+			fType := strings.TrimSpace(columns[1])
+			fComment := strings.TrimSpace(columns[2])
+			result.WriteString("  `" + fName + "` " + fType + " COMMENT '" + fComment + "',\n")
+		}
+	}
+	if err := scanner.Err(); err != nil {
+		return "", fmt.Errorf("error reading file: %v", err)
+	}
+
+	result.WriteString(");\n")
+	return result.String(), nil
+}

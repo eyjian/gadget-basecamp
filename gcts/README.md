@@ -2,6 +2,10 @@
 
 生成建表 SQL 的工具（generate create table sql），本工具生成的建表 SQL 不包含创建索引和分区等。
 
+# gogcts
+
+提供一个生成建表 SQL 的 Go 函数，可基于它实现一个在线生成建表 SQL 工具。
+
 # 应用场景
 
 使用文档，如 Word、腾讯文档、wiki 等以表格方式维护表的定义，需要一个工具维护对应的建表 SQL 。
@@ -68,3 +72,16 @@ CREATE TABLE `t_user` (
 * 字段注释
 
 **注意**一个输入文件只能定义一张表。
+
+# Go 版 gcts 工具安装方法
+
+```shell
+go install github.com/eyjian/gadget-basecamp/gcts@latest
+```
+
+执行成功后，在 $GOPATH/bin 目录下可找到 gcts：
+
+```shell
+# file `go env GOPATH`/bin/gcts
+/root/go/bin/gcts: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, not stripped
+```
