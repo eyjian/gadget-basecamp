@@ -14,6 +14,7 @@ delimiter=$2  # 分隔符
 input_file=$3 # 输入文件（只支持单个表）
 
 # 生成建表语句
+echo "DROP TABLE IF EXISTS \`$table_name\`;"
 echo "CREATE TABLE \`$table_name\` ("
 while IFS= read -r line; do
     # 使用指定的分隔符分割每一行
