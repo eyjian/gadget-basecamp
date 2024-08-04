@@ -12,6 +12,14 @@ import (
 func GenerateCreateTableSQL(tableName, delimiter string, inputFile *os.File) (string, error) {
 	var result strings.Builder
 
+	// delimiter 不能为空格、TAB符、单引号、双引号和反引号
+	if delimiter == " " || delimiter == "\t" || delimiter == "'" || delimiter == "\"" || delimiter == "`" {
+		return "", fmt.Errorf("delimiter must not be a space, tab, single quote, double quote, or backquote")
+	}
+	if len(delimiter) != 1 {
+		return "", fmt.Errorf("delimiter must be a single character")
+	}
+
 	result.WriteString("DROP TABLE IF EXISTS `" + tableName + "`;\n")
 	result.WriteString("CREATE TABLE `" + tableName + "` (\n")
 

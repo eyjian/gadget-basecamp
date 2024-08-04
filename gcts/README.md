@@ -8,24 +8,24 @@
 
 # 应用场景
 
-使用文档，如 Word、腾讯文档、wiki 等以表格方式维护表的定义，需要一个工具维护对应的建表 SQL 。
+使用文档，如 Word、腾讯文档、wiki 等以表格方式维护表的定义，需要一个工具维护对应的建表 SQL 。注意的字段类型和字段注释前加上前导的分隔符，以便于生成建表 SQL 。注意分隔符不能为空格、TAB符、单引号、双引号和反引号三种字符。
 
-| 字段名           | 字段类型                                                           | 字段注释  |
-|---------------|----------------------------------------------------------------|-------|
-| f_id          | INT UNSIGNED                                                   | 自增 ID |
-| f_name        | VARCHAR(20)                                                    | 姓名    |
-| f_age         | INT UNSIGNED                                                   | 年龄    |
-| f_sex         | VARCHAR(1)                                                     | 性别    |
-| f_birthday    | DATE                                                           | 生日    |
-| f_address     | VARCHAR(100)                                                   | 地址    |
-| f_phone       | VARCHAR(11)                                                    | 电话    |
-| f_email       | VARCHAR(100)                                                   | 邮箱    |
-| f_qq          | VARCHAR(10)                                                    | QQ    |
-| f_wechat      | VARCHAR(100)                                                   | 微信    |
-| f_weibo       | VARCHAR(100)                                                   | 微博    |
-| f_create_time | DATETIME DEFAULT CURRENT_TIMESTAMP                             | 创建时间  |
-| f_update_time | DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | 更新时间  |
-| f_delete_time | DATETIME                                                       | 删除时间  |
+| 字段名           | 字段类型                                                            | 字段注释   |
+|---------------|-----------------------------------------------------------------|--------|
+| f_id          | ;INT UNSIGNED                                                   | ;自增 ID |
+| f_name        | ;VARCHAR(20)                                                    | ;姓名    |
+| f_age         | ;INT UNSIGNED                                                   | ;年龄    |
+| f_sex         | ;VARCHAR(1)                                                     | ;性别    |
+| f_birthday    | ;DATE                                                           | ;生日    |
+| f_address     | ;VARCHAR(100)                                                   | ;地址    |
+| f_phone       | ;VARCHAR(11)                                                    | ;电话    |
+| f_email       | ;VARCHAR(100)                                                   | ;邮箱    |
+| f_qq          | ;VARCHAR(10)                                                    | ;QQ    |
+| f_wechat      | ;VARCHAR(100)                                                   | ;微信    |
+| f_weibo       | ;VARCHAR(100)                                                   | ;微博    |
+| f_create_time | ;DATETIME DEFAULT CURRENT_TIMESTAMP                             | ;创建时间  |
+| f_update_time | ;DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | ;更新时间  |
+| f_delete_time | ;DATETIME                                                       | ;删除时间  |
 
 使用的时候，从 Word 等将字段名、字段类型、字段注释三列复制到文本文件，然后执行工具就可以生成建表 SQL 。
 
@@ -36,7 +36,7 @@
 ## 使用示例
 
 ```shell
-% sh generate_create_table_sql.sh 't_user' ',' 'input_file.txt'
+% sh generate_create_table_sql.sh 't_user' ';' 'input_file.txt'
 CREATE TABLE `t_user` (
   `f_id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增 ID',
   `f_name` VARCHAR(20) NOT NULL COMMENT '姓名',
@@ -60,7 +60,7 @@ CREATE TABLE `t_user` (
 一共三个必要参数：
 
 * 参数1：表名
-* 参数2：分隔符（不能为单引号、双引号和反引号）
+* 参数2：分隔符（不能为空格、TAB符、单引号、双引号和反引号）
 * 参数3：输入文件
 
 ## 输入文件说明
