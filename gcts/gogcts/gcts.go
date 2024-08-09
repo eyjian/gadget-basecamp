@@ -5,11 +5,20 @@ package gogcts
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 )
 
-func GenerateCreateTableSQL(tableName, delimiter string, inputFile *os.File) (string, error) {
+func GenerateCreateTableSqlFromFile(tableName, delimiter string, inputFile *os.File) (string, error) {
+	return GenerateCreateTableSqlFromIoReader(tableName, delimiter, inputFile)
+}
+
+func GenerateCreateTableSqlFromString(tableName, delimiter string, inputString string) (string, error) {
+	return GenerateCreateTableSqlFromIoReader(tableName, delimiter, strings.NewReader(inputString))
+}
+
+func GenerateCreateTableSqlFromIoReader(tableName, delimiter string, inputIoReader io.Reader) (string, error) {
 	var result strings.Builder
 
 	// delimiter 不能为空格、TAB符、单引号、双引号和反引号
@@ -23,7 +32,7 @@ func GenerateCreateTableSQL(tableName, delimiter string, inputFile *os.File) (st
 	result.WriteString("DROP TABLE IF EXISTS `" + tableName + "`;\n")
 	result.WriteString("CREATE TABLE `" + tableName + "` (\n")
 
-	scanner := bufio.NewScanner(inputFile)
+	scanner := bufio.NewScanner(inputIoReader)
 	for scanner.Scan() {
 		line := scanner.Text()
 		columns := strings.Split(line, delimiter)
