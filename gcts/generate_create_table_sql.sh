@@ -9,16 +9,16 @@ if [ "$#" -ne 3 ]; then
     exit 1
 fi
 
-table_name=$1 # 表名
-delimiter=$2  # 分隔符（不能为空格、TAB符、单引号、双引号和反引号）
-input_file=$3 # 输入文件（只支持单个表）
+table_name="$1" # 表名
+delimiter="$2"  # 分隔符（不能为空格、TAB符、单引号、双引号和反引号）
+input_file="$3" # 输入文件（只支持单个表）
 
 # delimiter 为单引号、双引号或反引号则报错
 if [[ "X$delimiter" == "X" || $delimiter == "\t" || $delimiter == "'" || $delimiter == '"' || $delimiter == '`' ]]; then
     echo "Error: delimiter must not be a space, TAB, single quote, double quote or back quote"
     exit 1
 fi
-if test ${#$delimiter} -ne 1; then
+if test ${#delimiter} -ne 1; then
     echo "Error: delimiter must be a single character"
     exit 1
 fi

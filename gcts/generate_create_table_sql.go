@@ -28,7 +28,7 @@ func main() {
 	}
 	defer inputFile.Close()
 
-	createTableSQL, err := gogcts.GenerateCreateTableSQL(tableName, delimiter, inputFile)
+	createTableSQL, err := gogcts.GenerateCreateTableSqlFromFile(tableName, delimiter, inputFile)
 	if err != nil {
 		fmt.Printf("Error generating create table SQL: %v\n", err)
 		return

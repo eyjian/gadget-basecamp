@@ -7,15 +7,31 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"regexp"
 	"strings"
 )
 
 func GenerateCreateTableSqlFromFile(tableName, delimiter string, inputFile *os.File) (string, error) {
-	return GenerateCreateTableSqlFromIoReader(tableName, delimiter, inputFile)
+	inputBytes, err := io.ReadAll(inputFile)
+	if err != nil {
+		return "", fmt.Errorf("read %s error: %s", inputFile.Name(), err.Error())
+	}
+
+	// 下列两种都可以使用
+	//return GenerateCreateTableSqlFromIoReader(tableName, delimiter, inputFile)
+	return GenerateCreateTableSqlFromString(tableName, delimiter, string(inputBytes))
 }
 
 func GenerateCreateTableSqlFromString(tableName, delimiter string, inputString string) (string, error) {
-	return GenerateCreateTableSqlFromIoReader(tableName, delimiter, strings.NewReader(inputString))
+	resultString := inputString
+
+	// 编译一个正则表达式，用于匹配制表符
+	re := regexp.MustCompile(`\t`)
+
+	// 使用正则表达式的ReplaceAllString方法替换制表符为空字符串
+	resultString = re.ReplaceAllString(inputString, " ")
+
+	return GenerateCreateTableSqlFromIoReader(tableName, delimiter, strings.NewReader(resultString))
 }
 
 func GenerateCreateTableSqlFromIoReader(tableName, delimiter string, inputIoReader io.Reader) (string, error) {

@@ -35,6 +35,8 @@
 
 ## 使用示例
 
+脚本方式:
+
 ```shell
 % sh generate_create_table_sql.sh 't_user' ';' 'input_file.txt'
 CREATE TABLE `t_user` (
@@ -53,6 +55,12 @@ CREATE TABLE `t_user` (
   `f_update_time` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `f_delete_time` DATETIME COMMENT '删除时间',
 );
+```
+
+命令方式：
+
+```shell
+$ gcts 't_user' ';' 'input_file.txt'
 ```
 
 ## 参数说明
